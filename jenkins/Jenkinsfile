@@ -2,9 +2,9 @@ pipeline {
     agent any
     
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
         maven "maven3.9"
     }
+    
     stages {
         stage('Build') {
             steps {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage ('Deploy to tomcat server'){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'd2d9577c-e7cb-439d-b737-67431042b3e6', path: '', url: 'http://localhost:7080/')], contextPath: null, war: '**/target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'd2d9577c-e7cb-439d-b737-67431042b3e6', path: '', url: 'http://localhost:7080/')], contextPath: null, war: '**/*.war'
             }
         }
     }
